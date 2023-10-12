@@ -1,0 +1,5 @@
+music_env/**
+*/.idea/**
+*.DS_STORE
+chinook.db
+structure.txt
