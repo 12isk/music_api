@@ -1,20 +1,21 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
-from .database import Base
+from database import Base
 
 class Artists(Base):
     __tablename__ = "artists"
 
-    ArtistId = Column(Integer, primary_key=True)
+    ArtistId = Column(Integer, primary_key = True)
     Name = Column(String)
+    AlbumId = Column(Integer, ForeignKey('albums.AlbumId'))
 
 class Albums(Base):
     __tablename__ = "albums"
 
-    AlbumId = Column(Integer, primary_key=True)
+    AlbumId = Column(Integer, primary_key = True)
     Title = Column(String)
-    ArtistId = relationship("Artists", back_populates="artistId")
+    ArtistId = Column(Integer, ForeignKey("artists.ArtistId"))
 
 class Tracks(Base):
     __tablename__ = "tracks"
@@ -23,8 +24,7 @@ class Tracks(Base):
     Name = Column(String)
     Composer = Column(String)
     Milliseconds = Column(Integer)
-    AlbumID = relationship("Albums", back_populates="albumID")
-
+    AlbumID = Column(Integer, ForeignKey("albums.AlbumId"))
 
 
 
