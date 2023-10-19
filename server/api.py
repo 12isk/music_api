@@ -1,8 +1,9 @@
 import fastapi
 from fastapi import FastAPI, Depends, HTTPException
-import database, models
-from database import SessionLocal
-import models
+from . import database, models
+from .database import SessionLocal
+
+# import models
 
 app = FastAPI()
 

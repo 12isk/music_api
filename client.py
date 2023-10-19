@@ -1,4 +1,4 @@
-import requests
+import requests, pprint
 
 
 def get_artist():
@@ -35,19 +35,22 @@ def get_tracks():
 def main():
     choice = input(
         "What do you want, user?\n"
-        + "Tap '1' to look for an Artist by *name*; \n "
-        + "Tap '2' to look for the albums of an artist.\n"
-        + "Tap '3' to look for the songs in an album.\n"
-        "Tap'q' to quit"
+        + "Tap '1' to look for an Artist by *name*, \n "
+        + "Tap '2' to look for the albums of an artist,\n"
+        + "Tap '3' to look for the songs in an album\n"
+        "Tap 'q' to quit.\n" + "Enter your choice: "
     )
-
+    pp = pprint.PrettyPrinter(indent=4, sort_dicts=True)
     match (choice):
         case "1":
-            get_artist()
+            pp.pprint(get_artist())
 
         case "2":
-            get_albums()
+            pp.pprint(get_albums())
         case "3":
-            get_tracks()
+            pp.pprint(get_tracks())
         case "q":
             quit()
+
+
+main()
