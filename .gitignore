@@ -4,3 +4,4 @@ music_env/**
 *.DS_STORE
 chinook.db
 structure.txt
+.VSCodeCounter/**

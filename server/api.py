@@ -1,14 +1,15 @@
 import fastapi
 from fastapi import FastAPI, Depends, HTTPException
-import database, models 
+import database, models
 from database import SessionLocal
-import models 
+import models
 
 app = FastAPI()
 
+
 @app.get("/")
 async def root():
-    return {"message" : "Hello World"}
+    return {"message": "Hello World"}
 
 
 def get_db() -> SessionLocal:
@@ -19,40 +20,36 @@ def get_db() -> SessionLocal:
         db.close()
 
 
-
-
 @app.get("/artists/name/{artist_name}")
-async def read_artist_name(artist_name: str, db = Depends(get_db)):
+async def read_artist_name(artist_name: str, db=Depends(get_db)):
+    """Get all artists that have the passed string in their names."""
     qry = db.query(models.Artists)
-    
-    artists = qry.filter(models.Artists.Name.like(f'%{artist_name}%')).all()
-    
+
+    artists = qry.filter(models.Artists.Name.like(f"%{artist_name}%")).all()
+
     if artists:
         return {"artist_name": artists}
-    raise HTTPException(status_code = 404, detail="Artist not found.")
-
-
-
+    raise HTTPException(status_code=404, detail="Artist not found.")
 
 
 @app.get("/artists/{id}/albums")
-async def get_album_by_id(id: int, db = Depends(get_db)):
-    """ Retrieves album from the database corresponding to the ID passed in the function. """
+async def get_album_by_id(id: int, db=Depends(get_db)):
+    """Retrieves album from the database corresponding to the ID passed in the function."""
     qry = db.query(models.Albums)
     albums = qry.filter(models.Albums.ArtistId == id).all()
 
-    if (albums):
+    if albums:
         return albums
-    raise HTTPException(status_code = 404, detail="Albums not found.")
+    raise HTTPException(status_code=404, detail="Albums not found.")
 
 
 @app.get("/albums/{album_id}")
-async def get_songs_from_album(album_id: int, db= Depends(get_db)):
-    """ Retrieves all songs of the album corresponding to the id passed in the function. """
+async def get_songs_from_album(album_id: int, db=Depends(get_db)):
+    """Retrieves all songs of the album corresponding to the id passed in the function."""
 
     qry = db.query(models.Tracks)
     songs = qry.filter(models.Tracks.AlbumID == album_id).all()
 
-    if (songs):
+    if songs:
         return songs
-    raise HTTPException(status_code= 404, detail = "Tracks not found.")
+    raise HTTPException(status_code=404, detail="Tracks not found.")
