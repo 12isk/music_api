@@ -1,4 +1,7 @@
-import requests, pprint, urllib
+from fastapi import HTTPException
+import pprint
+import requests
+import urllib
 
 
 def get_artist():
@@ -7,7 +10,7 @@ def get_artist():
     try:
         response = requests.get(f"http://127.0.0.1:8000/artists/name/{escaped}")
         return response.json()
-    except:
+    except HTTPException:
         print("An error Occured. Artist was not found.")
 
 
@@ -18,7 +21,7 @@ def get_albums_by_id():
         response = requests.get(f"http://127.0.0.1:8000/artists/{id}/albums")
         # returning json as we do not want an object thrown at us
         return response.json()
-    except:
+    except HTTPException:
         print("An error Occured. Artist was not found.")
 
 
@@ -29,7 +32,7 @@ def get_tracks():
     try:
         response = requests.get(f"http://127.0.0.1:8000/albums/{album_id}")
         return response.json()
-    except:
+    except HTTPException:
         print("An error Occured. Artist was not found.")
 
 

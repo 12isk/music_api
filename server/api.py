@@ -1,6 +1,5 @@
-import fastapi
 from fastapi import FastAPI, Depends, HTTPException
-from . import database, models
+from . import models
 from .database import SessionLocal
 
 # import models
