@@ -1,16 +1,17 @@
-import requests, pprint
+import requests, pprint, urllib
 
 
 def get_artist():
     name = input("What is the name of the artist you want to find?: ")
+    escaped = urllib.parse.quote(name, safe="")
     try:
-        response = requests.get(f"http://127.0.0.1:8000/artists/name/{name}")
+        response = requests.get(f"http://127.0.0.1:8000/artists/name/{escaped}")
         return response.json()
     except:
         print("An error Occured. Artist was not found.")
 
 
-def get_albums():
+def get_albums_by_id():
     id = int(input("Enter the id of the artist whose albums you want to display: "))
 
     try:
@@ -41,12 +42,12 @@ def main():
         "Tap 'q' to quit.\n" + "Enter your choice: "
     )
     pp = pprint.PrettyPrinter(indent=4, sort_dicts=True)
+    print("\n")
     match (choice):
         case "1":
             pp.pprint(get_artist())
-
         case "2":
-            pp.pprint(get_albums())
+            pp.pprint(get_albums_by_id())
         case "3":
             pp.pprint(get_tracks())
         case "q":

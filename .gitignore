@@ -1,7 +1,10 @@
 music_env/**
-*__pycache__/**
+*/__pycache__/**
 */.idea/**
 *.DS_STORE
 chinook.db
 structure.txt
 .VSCodeCounter/**
+server/__pycache__/**
+.pytest_cache/
+alb_resp.txt
