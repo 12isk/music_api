@@ -1,10 +1,11 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, APIRouter
 from . import models
 from .database import SessionLocal
 
 # import models
 
 app = FastAPI()
+router = APIRouter()
 
 
 @app.get("/")
@@ -13,7 +14,7 @@ async def root():
 
 
 def get_db() -> SessionLocal:
-    db = SessionLocal()
+    db: SessionLocal = SessionLocal()
     try:
         yield db
     finally:
@@ -53,3 +54,31 @@ async def get_songs_from_album(album_id: int, db=Depends(get_db)):
     if songs:
         return songs
     raise HTTPException(status_code=404, detail="Tracks not found.")
+
+
+@app.get("/genres/{genre_id}")
+async def get_genre(genre_id: int, db=Depends(get_db)):
+    """Retrieves all songs of the album corresponding to the id passed in the function."""
+
+    qry = db.query(models.Tracks)
+    results = qry.filter(models.Tracks.GenreId == genre_id).all()
+
+    if results:
+        return results
+    raise HTTPException(status_code=404, detail="Genre not found.")
+
+
+@app.post("/genres/")
+async def create_new_genre(title: str, db=Depends(get_db)):
+    """Creates new genre"""
+
+    genre = models.Genres()
+    genre.Name = title
+    db.add(genre)  # Add it to the database session
+    db.commit()  # Commit the transaction to save it to the database
+    db.refresh(genre)  # Refresh the object to get the newly generated ID
+
+    if genre:
+        message = f"Genre {title} created"
+        return {"Success": message}
+    raise HTTPException(status_code=500, detail="Failed to create track")

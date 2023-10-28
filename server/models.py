@@ -25,6 +25,12 @@ class Tracks(Base):
 
     TrackId: Column = Column(Integer, primary_key=True)
     Name: Column = Column(String)
-    Composer: Column = Column(String)
-    Milliseconds: Column = Column(Integer)
     AlbumID: Column = Column(Integer, ForeignKey("albums.AlbumId"))
+    GenreId: Column = Column(Integer, ForeignKey("tracks.GenreId"))
+
+
+class Genres(Base):
+    __tablename__: str = "genres"
+
+    GenreId: Column = Column(Integer, primary_key=True)
+    Name: Column = Column(String)

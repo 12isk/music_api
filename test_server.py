@@ -61,62 +61,24 @@ def test_get_tracks_13():
     response = client.get("albums/13")
 
     dic = [
-        {
-            "Name": "Quadrant",
-            "AlbumID": 13,
-            "Composer": "Billy Cobham",
-            "TrackId": 123,
-            "Milliseconds": 261851,
-        },
+        {"Name": "Quadrant", "TrackId": 123, "GenreId": 2, "AlbumID": 13},
         {
             "Name": "Snoopy's search-Red baron",
-            "AlbumID": 13,
-            "Composer": "Billy Cobham",
             "TrackId": 124,
-            "Milliseconds": 456071,
+            "GenreId": 2,
+            "AlbumID": 13,
         },
         {
             "Name": 'Spanish moss-"A sound portrait"-Spanish moss',
-            "AlbumID": 13,
-            "Composer": "Billy Cobham",
             "TrackId": 125,
-            "Milliseconds": 248084,
-        },
-        {
-            "Name": "Moon germs",
+            "GenreId": 2,
             "AlbumID": 13,
-            "Composer": "Billy Cobham",
-            "TrackId": 126,
-            "Milliseconds": 294060,
         },
-        {
-            "Name": "Stratus",
-            "AlbumID": 13,
-            "Composer": "Billy Cobham",
-            "TrackId": 127,
-            "Milliseconds": 582086,
-        },
-        {
-            "Name": "The pleasant pheasant",
-            "AlbumID": 13,
-            "Composer": "Billy Cobham",
-            "TrackId": 128,
-            "Milliseconds": 318066,
-        },
-        {
-            "Name": "Solo-Panhandler",
-            "AlbumID": 13,
-            "Composer": "Billy Cobham",
-            "TrackId": 129,
-            "Milliseconds": 246151,
-        },
-        {
-            "Name": "Do what cha wanna",
-            "AlbumID": 13,
-            "Composer": "George Duke",
-            "TrackId": 130,
-            "Milliseconds": 274155,
-        },
+        {"Name": "Moon germs", "TrackId": 126, "GenreId": 2, "AlbumID": 13},
+        {"Name": "Stratus", "TrackId": 127, "GenreId": 2, "AlbumID": 13},
+        {"Name": "The pleasant pheasant", "TrackId": 128, "GenreId": 2, "AlbumID": 13},
+        {"Name": "Solo-Panhandler", "TrackId": 129, "GenreId": 2, "AlbumID": 13},
+        {"Name": "Do what cha wanna", "TrackId": 130, "GenreId": 2, "AlbumID": 13},
     ]
 
     assert response.status_code == 200
@@ -128,75 +90,20 @@ def test_get_tracks_1():
 
     dic = [
         {
-            "Composer": "Angus Young, Malcolm Young, Brian Johnson",
             "Name": "For Those About To Rock (We Salute You)",
-            "AlbumID": 1,
             "TrackId": 1,
-            "Milliseconds": 343719,
-        },
-        {
-            "Composer": "Angus Young, Malcolm Young, Brian Johnson",
-            "Name": "Put The Finger On You",
+            "GenreId": 1,
             "AlbumID": 1,
-            "TrackId": 6,
-            "Milliseconds": 205662,
         },
-        {
-            "Composer": "Angus Young, Malcolm Young, Brian Johnson",
-            "Name": "Let's Get It Up",
-            "AlbumID": 1,
-            "TrackId": 7,
-            "Milliseconds": 233926,
-        },
-        {
-            "Composer": "Angus Young, Malcolm Young, Brian Johnson",
-            "Name": "Inject The Venom",
-            "AlbumID": 1,
-            "TrackId": 8,
-            "Milliseconds": 210834,
-        },
-        {
-            "Composer": "Angus Young, Malcolm Young, Brian Johnson",
-            "Name": "Snowballed",
-            "AlbumID": 1,
-            "TrackId": 9,
-            "Milliseconds": 203102,
-        },
-        {
-            "Composer": "Angus Young, Malcolm Young, Brian Johnson",
-            "Name": "Evil Walks",
-            "AlbumID": 1,
-            "TrackId": 10,
-            "Milliseconds": 263497,
-        },
-        {
-            "Composer": "Angus Young, Malcolm Young, Brian Johnson",
-            "Name": "C.O.D.",
-            "AlbumID": 1,
-            "TrackId": 11,
-            "Milliseconds": 199836,
-        },
-        {
-            "Composer": "Angus Young, Malcolm Young, Brian Johnson",
-            "Name": "Breaking The Rules",
-            "AlbumID": 1,
-            "TrackId": 12,
-            "Milliseconds": 263288,
-        },
-        {
-            "Composer": "Angus Young, Malcolm Young, Brian Johnson",
-            "Name": "Night Of The Long Knives",
-            "AlbumID": 1,
-            "TrackId": 13,
-            "Milliseconds": 205688,
-        },
-        {
-            "Composer": "Angus Young, Malcolm Young, Brian Johnson",
-            "Name": "Spellbound",
-            "AlbumID": 1,
-            "TrackId": 14,
-            "Milliseconds": 270863,
-        },
+        {"Name": "Put The Finger On You", "TrackId": 6, "GenreId": 1, "AlbumID": 1},
+        {"Name": "Let's Get It Up", "TrackId": 7, "GenreId": 1, "AlbumID": 1},
+        {"Name": "Inject The Venom", "TrackId": 8, "GenreId": 1, "AlbumID": 1},
+        {"Name": "Snowballed", "TrackId": 9, "GenreId": 1, "AlbumID": 1},
+        {"Name": "Evil Walks", "TrackId": 10, "GenreId": 1, "AlbumID": 1},
+        {"Name": "C.O.D.", "TrackId": 11, "GenreId": 1, "AlbumID": 1},
+        {"Name": "Breaking The Rules", "TrackId": 12, "GenreId": 1, "AlbumID": 1},
+        {"Name": "Night Of The Long Knives", "TrackId": 13, "GenreId": 1, "AlbumID": 1},
+        {"Name": "Spellbound", "TrackId": 14, "GenreId": 1, "AlbumID": 1},
     ]
 
     assert response.status_code == 200
@@ -247,4 +154,13 @@ def test_get_artist_mcmiller():
 
     dic = {"detail": "Artist not found."}
     assert response.status_code == 404
+    assert response.json() == dic
+
+
+def test_create_genre():
+    data = {"title": "Elysium"}
+    response = client.post("genres/", params=data)
+
+    dic = {"Success": "Genre Elysium created"}
+    assert response.status_code == 200
     assert response.json() == dic
